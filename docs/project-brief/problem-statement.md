@@ -1,0 +1,5 @@
+# **Problem Statement**
+The current logistics workflow at PJL Logistics is a highly manual process that relies on team members coordinating bookings, dispatches, and updates through disparate channels like email and direct messaging. Key pain points include: the manual data entry from various non-standard booking formats (PDFs, JPGs, etc.), the time-consuming process of contacting and confirming details with carriers, and the lack of a centralized, real-time view of a shipment's status for the operations team, clients, and carriers.
+
+This manual system limits the number of shipments the team can effectively manage, creating a bottleneck for business growth. It is also susceptible to human error, which can lead to costly delays and negatively impact client satisfaction. Existing off-the-shelf logistics software often fails to accommodate PJL's unique, agile workflow, particularly the heavy reliance on Telegram for communication and the need to process customer-provided booking documents without forcing them into a new format. Solving this now is critical to enabling the business to scale efficiently and offer a superior, transparent service to clients.
+

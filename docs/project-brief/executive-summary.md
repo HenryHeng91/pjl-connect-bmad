@@ -1,0 +1,3 @@
+# **Executive Summary**
+PJL Connect will be a comprehensive logistics automation system designed for the PJL Logistics operations team. The primary problem it solves is the reliance on manual workflows for booking, dispatch, and communication, which are time-consuming and prone to error. By leveraging OCR technology and a Telegram-bot-based communication hub, PJL Connect's key value proposition is to dramatically increase operational efficiency, reduce manual errors, and provide real-time shipment visibility to the operations team, clients, and carrier partners.
+

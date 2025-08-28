@@ -1,10 +1,10 @@
 ## **PJL Connect UI/UX Specification**
 
-### \#\# Introduction
+## Introduction
 
 This document defines the user experience goals, information architecture, user flows, and visual design specifications for **PJL** **Connect's** user interface. It serves as the foundation for visual design and frontend development, ensuring a cohesive and user-centered experience.
 
-#### **Overall** **UX** **Goals** & **Principles**
+### **Overall** **UX** **Goals** & **Principles**
 
   * **Target** **User** **Personas**:
       * **Primary**: The **PJL** **Logistics** **Ops** **Team** & **Managers**, who need an efficient, task-oriented system.
@@ -18,11 +18,11 @@ This document defines the user experience goals, information architecture, user 
     2.  **Clarity** **Above** **All**: Prioritize clear information and unambiguous actions over aesthetic complexity.
     3.  **Seamless** **Handoffs**: The transition from a **Telegram** alert to the web **Back** **Office** should be smooth and context-aware.
 
-### \#\# Information Architecture (IA)
+## Information Architecture (IA)
 
 This section outlines the structure of the **PJL** **Connect** **Back** **Office**, ensuring that users can find information and accomplish tasks logically and intuitively.
 
-#### **Site** **Map** / **Screen** **Inventory**
+### **Site** **Map** / **Screen** **Inventory**
 
 ```mermaid
 graph TD
@@ -49,21 +49,21 @@ graph TD
     D -- Manager Role --> H
 ```
 
-#### **Navigation** **Structure**
+### **Navigation** **Structure**
 
   * **Primary** **Navigation**: Simple and role-based. "Dashboard" for all users; "Admin" is added for Managers.
   * **Secondary** **Navigation**: Within the "Admin" section, links for "Carrier Management", "Service Management", and "Manager Stats".
   * **Breadcrumb** **Strategy**: Will be used on detailed pages for clear context and easy navigation (e.g., `Admin > Carrier Management > Edit Carrier`).
 
-### \#\# User Flows
+## User Flows
 
-#### **New** **Booking** **Processing** & **Dispatch**
+### **New** **Booking** **Processing** & **Dispatch**
 
   * **User** **Goal**: For an **Ops** **Team** **Member** to efficiently process a new, automatically ingested booking and successfully dispatch it to a carrier.
   * **Entry** **Point**: A new booking appears on the Dashboard/Queue with the status "Pending Ops Review".
   * **Success** **Criteria**: The booking is accepted by a carrier, and its status is updated to "Awaiting Carrier Info".
 
-##### Flow Diagram
+#### Flow Diagram
 
 ```mermaid
 graph TD
@@ -80,13 +80,13 @@ graph TD
     I --> F;
 ```
 
-### \#\# Wireframes & Mockups
+## Wireframes & Mockups
 
-#### **Primary** **Design** **Files**
+### **Primary** **Design** **Files**
 
 High-fidelity visual designs and prototypes will be developed in a collaborative tool like **Figma**. The final design file will be linked here as the single source of truth for the UI's visual appearance.
 
-#### **Key** **Screen** **Layouts**
+### **Key** **Screen** **Layouts**
 
 A low-fidelity wireframe for the **Booking** **Detail** **View**:
 
@@ -96,16 +96,16 @@ A low-fidelity wireframe for the **Booking** **Detail** **View**:
 +--------------------------------------------------------------------------+
 | Left Column (70%)                  | Right Column (30%)                 | Main
 |------------------------------------|------------------------------------|
-| #### Shipment Details              | #### Carrier & Driver Info         |
+| ### Shipment Details              | ### Carrier & Driver Info         |
 | - Pickup: [Address]                | - Carrier: [Carrier Name]          |
 | - Destination: [Address]           | - Truck: [Plate #], [Size]         |
 | - Customer: [Name], [Contact]      | - Driver: [Name], [Telegram]       |
 |                                    |                                    |
-| #### Attached Documents            | #### Live Map View                 |
+| ### Attached Documents            | ### Live Map View                 |
 | - [Booking_Order.pdf] (view)       | [Embedded map showing live         |
 | - [Carrier_DO.pdf] (view)          |  driver location]                  |
 |                                    |                                    |
-| #### Communication Log             | #### Action Panel                  |
+| ### Communication Log             | ### Action Panel                  |
 | - [Timestamp] Msg to Carrier       | [  Update Customer Button  ]        |
 | - [Timestamp] Carrier Accepted     | [ Generate Customs Doc Button ]    |
 | - [Timestamp] Msg to Customer      |                                    |
@@ -114,13 +114,13 @@ A low-fidelity wireframe for the **Booking** **Detail** **View**:
 
   * **Interaction** **Notes**: The **Action** **Panel** is dynamic and only shows buttons relevant to the booking's current status.
 
-### \#\# Component Library / Design System
+## Component Library / Design System
 
-#### **Design** **System** **Approach**
+### **Design** **System** **Approach**
 
 For the **MVP**, we will create a focused, internal component library to ensure visual and functional consistency.
 
-#### **Core** **Components**
+### **Core** **Components**
 
   * **Button**: With Primary, Secondary, and Danger variants.
   * **Input** **Field**: For all forms.
@@ -129,13 +129,13 @@ For the **MVP**, we will create a focused, internal component library to ensure 
   * **Modal** (**Popup** **Dialog**): For confirmations and alerts.
   * **Data** **Table**: For lists in the Admin sections.
 
-### \#\# Branding & Style Guide
+## Branding & Style Guide
 
-#### **Visual** **Identity**
+### **Visual** **Identity**
 
 The visual identity is defined by the official **PJL** **Logistics** logos.
 
-#### **Color** **Palette**
+### **Color** **Palette**
 
 | Color Type | Hex Code (Estimated) | Usage |
 | :--- | :--- | :--- |
@@ -145,32 +145,32 @@ The visual identity is defined by the official **PJL** **Logistics** logos.
 | Warning | \#FFAB00 | Cautions, important notices |
 | Error | \#DE350B | Error messages, destructive actions |
 
-#### **Typography**
+### **Typography**
 
   * **Logotype**: The custom font in the logo is for branding use only.
   * **UI** **Font** **Family**: **Inter**, a clean sans-serif font for all interface text.
 
-### \#\# Accessibility Requirements
+## Accessibility Requirements
 
   * **Standard**: The application will adhere to **Web Content Accessibility Guidelines (WCAG) 2.1 Level AA**.
   * **Key** **Features**: All functionality will be keyboard-navigable, all text will meet color contrast ratios, and the application will be built with semantic HTML for screen reader compatibility.
 
-### \#\# Responsiveness Strategy
+## Responsiveness Strategy
 
   * **Priority**: The primary experience is for desktop, but the design will be responsive and functional on tablets.
   * **Patterns**: Multi-column layouts will stack vertically on smaller screens, and navigation will collapse into a "hamburger" menu.
 
-### \#\# Animation & Micro-interactions
+## Animation & Micro-interactions
 
   * **Principles**: Motion will be purposeful, swift, and accessible.
   * **Usage**: Subtle animations will be used for state transitions (hover/click feedback), loading indicators, and notifications to make the UI feel more responsive.
 
-### \#\# Performance Considerations
+## Performance Considerations
 
   * **Goals**: Key pages will load in under 2.5 seconds, and all UI interactions will provide feedback in under 100 milliseconds.
   * **Strategies**: We will use code splitting, lazy loading of assets, and skeleton loaders to improve perceived performance.
 
-### \#\# Next Steps
+## Next Steps
 
   * **Immediate** **Actions**:
     1.  Final approval of this **UI/UX** **Specification**.

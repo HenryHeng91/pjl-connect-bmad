@@ -1,31 +1,31 @@
 ## **PJL Connect Fullstack Architecture Document**
 
-### \#\# Introduction
+##Introduction
 
 This document outlines the complete fullstack architecture for **PJL Connect**, including backend systems, frontend implementation, and their integration. It serves as the single source of truth for AI-driven development, ensuring consistency across the entire technology stack.
 
-#### **Starter Template or Existing Project**
+### **Starter Template or Existing Project**
 
 To accelerate development and ensure best practices, we will use the official **Laravel Breeze** starter kit with the **Vue and Inertia.js** stack. This provides a minimal and elegant starting point, scaffolding the authentication system and configuring the frontend build process.
 
 -----
 
-### \#\# High Level Architecture
+## \#\# High Level Architecture
 
-#### **Technical Summary**
+### **Technical Summary**
 
 **PJL Connect** will be a **monolithic Laravel** application built within a **monorepo**. It will serve a modern, single-page application-style frontend built with **Vue.js**, using **Inertia.js** to seamlessly connect the two. The system will be deployed on the specified shared hosting environment and will integrate heavily with external services, primarily the **Telegram Bot API** and **AWS Textract**.
 
-#### **Platform and Infrastructure Choice**
+### **Platform and Infrastructure Choice**
 
   * **Platform**: The application will be deployed on the existing **shared hosting** environment.
   * **Key Services**: The platform must support **PHP** (latest stable version), **MySQL**, and a web server (**Apache** or **Nginx**).
 
-#### **Repository Structure**
+### **Repository Structure**
 
   * **Structure**: **Monorepo**. A single repository is the most effective structure for managing this monolithic application.
 
-#### **High Level Architecture Diagram**
+### **High Level Architecture Diagram**
 
 ```mermaid
 graph TD
@@ -41,7 +41,7 @@ graph TD
 
 -----
 
-### \#\# Tech Stack
+## \#\# Tech Stack
 
 | Category | Technology | Version (Latest Stable) | Rationale |
 | :--- | :--- | :--- | :--- |
@@ -61,27 +61,27 @@ graph TD
 
 -----
 
-### \#\# Data Models
+## \#\# Data Models
 
-#### **New Model: Company**
+### **New Model: Company**
 
   * **Purpose**: To act as a central "address book" for any company involved in a transaction (customer, shipper, consignee).
 
-#### **New Top-Level Model: Booking**
+### **New Top-Level Model: Booking**
 
   * **Purpose**: Represents the initial, complete request from a customer. This is the parent record for all related activities.
 
-#### **Updated Model: Shipment**
+### **Updated Model: Shipment**
 
   * **Purpose**: Represents a single, discrete consignment handled by one carrier to fulfill all or part of a customer Booking.
 
-#### **Updated Model: ShipmentDetail**
+### **Updated Model: ShipmentDetail**
 
   * **Purpose**: Stores the specific details of a single container or package within a single Shipment.
 
 -----
 
-### \#\# Database Schema
+## \#\# Database Schema
 
 ```sql
 -- Central "address book" for all companies
@@ -151,15 +151,15 @@ CREATE TABLE shipment_details (
 
 -----
 
-### \#\# API Specification
+## \#\# API Specification
 
 Since we've chosen **Inertia.js**, we won't have a traditional, separate REST or GraphQL API. Inertia allows our Laravel backend to serve data and page components directly to our Vue.js frontend in a tightly-coupled way.
 
 -----
 
-### \#\# Components
+## \#\# Components
 
-#### **Backend Components (Laravel Services)**
+### **Backend Components (Laravel Services)**
 
   * **Authentication Service**: Handles the Telegram login workflow and manages user roles.
   * **Booking Ingestion Service**: Manages receiving bookings, interfacing with the OCR service, and creating records.
@@ -168,7 +168,7 @@ Since we've chosen **Inertia.js**, we won't have a traditional, separate REST or
   * **Analytics Service**: Handles data aggregation and CSV exports.
   * **Document Generation Service**: Generates customs documents from PDF/Excel templates.
 
-#### **Frontend Components (Vue.js Views/Pages)**
+### **Frontend Components (Vue.js Views/Pages)**
 
   * **Dashboard/Queue View**: The primary "ticket-style" interface for the Ops team.
   * **Shipment Detail View**: The detailed page for a single shipment.
@@ -177,14 +177,14 @@ Since we've chosen **Inertia.js**, we won't have a traditional, separate REST or
 
 -----
 
-### \#\# External APIs
+## \#\# External APIs
 
-#### **Telegram Bot API**
+### **Telegram Bot API**
 
   * **Purpose**: To handle all real-time communication and user authentication.
   * **Documentation**: `https://core.telegram.org/bots/api`
 
-#### **Optical Character Recognition (OCR) Service**
+### **Optical Character Recognition (OCR) Service**
 
   * **Purpose**: To extract structured text and form data from booking documents.
   * **Provider**: **Amazon Web Services (AWS) Textract**.
@@ -192,7 +192,7 @@ Since we've chosen **Inertia.js**, we won't have a traditional, separate REST or
 
 -----
 
-### \#\# Core Workflows
+## \#\# Core Workflows
 
 This section uses a sequence diagram to illustrate the "New Booking Ingestion" process, showing how major components and external APIs interact.
 
@@ -223,43 +223,43 @@ sequenceDiagram
 
 -----
 
-### \#\# Frontend Architecture
+## \#\# Frontend Architecture
 
 This architecture is based on our decision to use **Laravel Breeze** with **Inertia.js**, which creates a modern, tightly-integrated full-stack application.
 
-#### **Component Architecture**
+### **Component Architecture**
 
   * All frontend components will reside in the `resources/js/` directory, with subdirectories for `Components`, `Layouts`, and `Pages`. Components will use Vue 3's `<script setup>` syntax.
 
-#### **State Management Architecture**
+### **State Management Architecture**
 
   * We will use **Pinia**, the official state management library for Vue.js, for any application-wide state (e.g., the authenticated user).
 
-#### **Routing Architecture**
+### **Routing Architecture**
 
   * All routing is handled server-side by **Laravel** in the `routes/web.php` file. The frontend `resources/js/Pages/` directory directly maps to our server-side routes. Route protection is handled by Laravel's `auth` middleware.
 
 -----
 
-### \#\# Backend Architecture
+## \#\# Backend Architecture
 
 This architecture follows standard, best-practice patterns for the Laravel framework.
 
-#### **Service Architecture (Traditional Server)**
+### **Service Architecture (Traditional Server)**
 
   * Routes will be defined in `routes/web.php`. Controllers will be located in `app/Http/Controllers/`. A typical controller method will fetch data and render a Vue page component via Inertia.
 
-#### **Database Architecture**
+### **Database Architecture**
 
   * The complete MySQL database schema has already been defined in the **"Database Schema"** section. We will use Laravel's built-in **Eloquent ORM** for all standard database interactions.
 
-#### **Authentication and Authorization**
+### **Authentication and Authorization**
 
   * The login process will follow the standard Telegram Login Widget flow. Route protection will be handled by Laravel's standard `auth` middleware, with a custom "Manager" middleware for admin-only sections.
 
 -----
 
-### \#\# Unified Project Structure
+## \#\# Unified Project Structure
 
 This structure is the standard, proven layout for a Laravel project using Inertia.js and Vue.js.
 
@@ -287,13 +287,13 @@ pjl-connect/
 
 -----
 
-### \#\# Development Workflow
+## \#\# Development Workflow
 
-#### **Local Development Setup**
+### **Local Development Setup**
 
 Developers will need PHP, Composer, Node.js, and MySQL. Setup involves cloning the repo, running `composer install` and `npm install`, configuring the `.env` file, and running `php artisan migrate`.
 
-#### **Running the Development Servers**
+### **Running the Development Servers**
 
 Two commands must be run in separate terminals:
 
@@ -302,21 +302,21 @@ Two commands must be run in separate terminals:
 
 -----
 
-### \#\# Deployment Architecture
+## \#\# Deployment Architecture
 
-#### **Deployment Strategy**
+### **Deployment Strategy**
 
 The process will be a manual deployment to the shared hosting environment via SFTP/SSH. Frontend assets will be compiled with `npm run build` before upload.
 
-#### **CI/CD Pipeline**
+### **CI/CD Pipeline**
 
 A fully automated pipeline is out of scope for the MVP. However, **GitHub Actions** will be used to automatically run tests and build assets on every push to ensure code quality before manual deployment.
 
 -----
 
-### \#\# Security and Performance
+## \#\# Security and Performance
 
-#### **Security Requirements**
+### **Security Requirements**
 
 We will leverage Laravel's built-in features for security, including:
 
@@ -325,29 +325,29 @@ We will leverage Laravel's built-in features for security, including:
   * Built-in CSRF and XSS protection.
   * Middleware for route protection and authorization.
 
-#### **Performance Optimization**
+### **Performance Optimization**
 
   * **Backend**: Use eager loading to prevent N+1 query problems and leverage Laravel's caching system.
   * **Frontend**: Vite will handle asset bundling, minification, and code-splitting automatically.
 
 -----
 
-### \#\# Testing Strategy
+## \#\# Testing Strategy
 
-#### **Testing Pyramid**
+### **Testing Pyramid**
 
 Our strategy will focus on a large base of fast **Unit Tests**, a smaller layer of **Integration/Feature Tests**, and minimal **End-to-End Tests** for the MVP.
 
-#### **Test Organization**
+### **Test Organization**
 
   * **Backend (Pest/PHPUnit)**: Tests will be organized in Laravel's default `tests/Unit` and `tests/Feature` directories.
   * **Frontend (Vitest)**: Tests will reside within the `resources/js/` directory.
 
 -----
 
-### \#\# Coding Standards
+## \#\# Coding Standards
 
-#### **Critical Fullstack Rules**
+### **Critical Fullstack Rules**
 
   * Always use Inertia responses from Laravel controllers to render pages.
   * Place all complex business logic inside Service classes.
@@ -356,13 +356,13 @@ Our strategy will focus on a large base of fast **Unit Tests**, a smaller layer 
 
 -----
 
-### \#\# Error Handling Strategy
+## \#\# Error Handling Strategy
 
 We will use the built-in capabilities of Laravel and Inertia.js. Backend validation errors will be automatically sent back to the Vue frontend and displayed next to the relevant form fields using Inertia's form helper. Unhandled exceptions will be caught by Laravel's global exception handler.
 
 -----
 
-### \#\# Monitoring and Observability
+## \#\# Monitoring and Observability
 
 For the MVP, we will use a pragmatic and low-cost stack:
 
