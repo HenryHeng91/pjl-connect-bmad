@@ -17,6 +17,10 @@ CREATE TABLE companies (
 CREATE TABLE carriers (
     id BINARY(16) PRIMARY KEY,
     company_name VARCHAR(255) NOT NULL,
+    contact_person VARCHAR(255) NULL,
+    phone_number VARCHAR(50) NULL,
+    email VARCHAR(255) NULL,
+    cost_details TEXT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -50,6 +54,16 @@ CREATE TABLE shipments (
     FOREIGN KEY (carrier_id) REFERENCES carriers(id),
     FOREIGN KEY (shipper_company_id) REFERENCES companies(id),
     FOREIGN KEY (consignee_company_id) REFERENCES companies(id)
+);
+
+-- Services offered by PJL
+CREATE TABLE services (
+    id BINARY(16) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Specific items/containers within a shipment
