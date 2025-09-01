@@ -42,6 +42,7 @@ CREATE TABLE shipments (
     carrier_id BINARY(16),
     shipper_company_id BINARY(16),
     consignee_company_id BINARY(16),
+    status VARCHAR(50) NOT NULL DEFAULT 'Pending',
     transport_mode ENUM('Sea', 'Air', 'Land') NOT NULL,
     mbl_number VARCHAR(255),
     hbl_number VARCHAR(255),
@@ -50,6 +51,10 @@ CREATE TABLE shipments (
     vessel_name VARCHAR(255),
     voyage_number VARCHAR(255),
     flight_number VARCHAR(255),
+    truck_plate_number VARCHAR(255),
+    truck_size VARCHAR(100),
+    driver_telegram_username VARCHAR(255),
+    delivered_at TIMESTAMP NULL,
     FOREIGN KEY (booking_id) REFERENCES bookings(id),
     FOREIGN KEY (carrier_id) REFERENCES carriers(id),
     FOREIGN KEY (shipper_company_id) REFERENCES companies(id),
@@ -77,6 +82,42 @@ CREATE TABLE shipment_details (
     gross_weight_kg DECIMAL(10, 2),
     cbm DECIMAL(10, 3),
     FOREIGN KEY (shipment_id) REFERENCES shipments(id) ON DELETE CASCADE
+);
+
+-- Maps a carrier to the cost of a specific service
+CREATE TABLE carrier_service_costs (
+    id BINARY(16) PRIMARY KEY,
+    carrier_id BINARY(16) NOT NULL,
+    service_id BINARY(16) NOT NULL,
+    cost DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (carrier_id) REFERENCES carriers(id) ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
+);
+
+-- Represents a customer invoice for a shipment
+CREATE TABLE invoices (
+    id BINARY(16) PRIMARY KEY,
+    shipment_id BINARY(16) NOT NULL,
+    invoice_number VARCHAR(255) NOT NULL UNIQUE,
+    status VARCHAR(50) NOT NULL DEFAULT 'Draft',
+    total_price DECIMAL(10, 2) NOT NULL,
+    total_cost DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (shipment_id) REFERENCES shipments(id) ON DELETE CASCADE
+);
+
+-- Individual line items on an invoice
+CREATE TABLE invoice_items (
+    id BINARY(16) PRIMARY KEY,
+    invoice_id BINARY(16) NOT NULL,
+    service_id BINARY(16) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    cost DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (invoice_id) REFERENCES invoices(id) ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES services(id)
 );
 ```
 

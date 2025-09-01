@@ -8,5 +8,7 @@
     * **Goal:** Implement real-time driver tracking and automated customer communication to provide end-to-end visibility for every shipment.
 * **Epic 4: Manager Insights & Reporting**
     * **Goal:** Provide managers with key performance insights and data export capabilities to measure operational efficiency and profitability.
+* **Epic 5: Invoicing and Finance**
+    * **Goal:** To establish a robust financial workflow that allows the Ops team to accurately bill customers for services rendered and provides managers with clear visibility into the profitability of each shipment.
 
 ---
