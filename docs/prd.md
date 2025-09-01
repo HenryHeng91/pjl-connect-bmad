@@ -101,6 +101,13 @@ The user experience for the PJL Connect Back Office will be task-oriented and hi
 ## Epic 1: Foundation & Core Administration
 **Goal:** Establish the core application foundation, including Telegram authentication and the back-office modules for managing carriers and services, enabling initial data setup.
 
+### **Story 1.0: Initial Project Setup & Credentials**
+* **As a** Project Admin, **I want** to configure all required third-party service credentials, **so that** the development agent can integrate with external APIs without being blocked.
+* **Acceptance Criteria:**
+    1.  Placeholders for Telegram Bot API credentials are created in the project's configuration.
+    2.  Placeholders for AWS credentials are created in the project's configuration.
+    3.  The application is configured to read these credentials from the environment.
+
 ### **Story 1.1: Project Scaffolding & Database Setup**
 * **As a** Developer, **I want** a new Laravel project initialized with a MySQL database connection, **so that** I have a clean and stable foundation to build the application on.
 * **Acceptance Criteria:**
@@ -240,4 +247,12 @@ The user experience for the PJL Connect Back Office will be task-oriented and hi
     1.  An "Export to CSV" button is available in the Back Office.
     2.  The manager can select a date range for the export.
     3.  The system generates and downloads a CSV file containing all relevant data for shipments within the selected range.
+
+### **Story 4.4: Back-Office User Guide**
+* **As a** new Ops Team Member, **I want** a simple user guide for the Back Office, **so that** I can learn how to use the system's core features.
+* **Acceptance Criteria:**
+    1.  A `user-guide.md` file is created in the `docs/` directory.
+    2.  The guide explains how to log into the system.
+    3.  The guide explains the main dashboard queue and how to open a booking for review.
+    4.  The guide explains the process of reviewing a booking, assigning a carrier, and dispatching the job.
 
