@@ -1,6 +1,13 @@
 # Epic 1: Foundation & Core Administration
 **Goal:** Establish the core application foundation, including Telegram authentication and the back-office modules for managing carriers and services, enabling initial data setup.
 
+### **Story 1.0: Initial Project Setup & Credentials**
+* **As a** Project Admin, **I want** to configure the required Telegram service credentials, **so that** the development agent can integrate with the Telegram API without being blocked.
+* **Acceptance Criteria:**
+    1. A placeholder for the Telegram Bot API credential is created in the project's configuration.
+    2. The application is configured to read this credential from the environment.
+    3. The configuration gracefully handles a missing credential without crashing.
+
 ### **Story 1.1: Project Scaffolding & Database Setup**
 * **As a** Developer, **I want** a new Laravel project initialized with a MySQL database connection, **so that** I have a clean and stable foundation to build the application on.
 * **Acceptance Criteria:**

@@ -22,3 +22,11 @@
     2.  The manager can select a date range for the export.
     3.  The system generates and downloads a CSV file containing all relevant data for shipments within the selected range.
 
+### **Story 4.4: Back-Office User Guide**
+* **As a** new Ops Team Member, **I want** a simple user guide for the Back Office, **so that** I can learn how to use the system's core features.
+* **Acceptance Criteria:**
+    1.  A `user-guide.md` file is created in the `docs/` directory.
+    2.  The guide explains how to log into the system.
+    3.  The guide explains the main dashboard queue and how to open a booking for review.
+    4.  The guide explains the process of reviewing a booking, assigning a carrier, and dispatching the job.
+
