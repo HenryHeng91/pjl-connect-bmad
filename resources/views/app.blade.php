@@ -12,6 +12,7 @@
 
         <!-- Scripts -->
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+        <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="pjlconnect_bot" data-size="large" data-auth-url="/login/telegram/callback" data-request-access="write"></script>
         @inertiaHead
     </head>
     <body class="font-sans antialiased">

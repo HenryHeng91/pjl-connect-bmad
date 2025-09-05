@@ -16,3 +16,7 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::middleware(['auth', 'can:manage-carriers'])->group(function () {
+    Route::resource('carriers', \App\Http\Controllers\CarrierController::class);
+});
