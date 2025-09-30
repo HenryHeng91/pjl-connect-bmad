@@ -24,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('manage-carriers', function (User $user) {
             return $user->role === 'manager';
         });
+
+        Gate::define('manage-services', function (User $user) {
+            return $user->role === 'manager';
+        });
     }
 }

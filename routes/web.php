@@ -20,3 +20,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'can:manage-carriers'])->group(function () {
     Route::resource('carriers', \App\Http\Controllers\CarrierController::class);
 });
+
+Route::middleware(['auth', 'role:Manager'])->group(function () {
+    Route::resource('services', \App\Http\Controllers\ServiceController::class);
+});
